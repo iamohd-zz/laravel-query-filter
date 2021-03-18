@@ -1,54 +1,66 @@
 # Filter Eloquent results via query URL
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/codoxide/laravel-query-filter.svg?style=flat-square)](https://packagist.org/packages/codoxide/laravel-query-filter)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/codoxide/laravel-query-filter/run-tests?label=tests)](https://github.com/codoxide/laravel-query-filter/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/codoxide/laravel-query-filter/Check%20&%20fix%20styling?label=code%20style)](https://github.com/codoxide/laravel-query-filter/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/codoxide/laravel-query-filter.svg?style=flat-square)](https://packagist.org/packages/codoxide/laravel-query-filter)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/smartisan/laravel-query-filter.svg?style=flat-square)](https://packagist.org/packages/smartisan/laravel-query-filter)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/smartisan/laravel-query-filter/run-tests?label=tests)](https://github.com/iamohd/laravel-query-filter/actions?query=workflow%3ATests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/smartisan/laravel-query-filter/Check%20&%20fix%20styling?label=code%20style)](https://github.com/iamohd/laravel-query-filter/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/smartisan/laravel-query-filter.svg?style=flat-square)](https://packagist.org/packages/smartisan/laravel-query-filter)
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/package-laravel-query-filter-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/package-laravel-query-filter-laravel)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Laravel query filter is a simple package that allows you to filter Eloquent results via URL query params.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require codoxide/laravel-query-filter
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Codoxide\QueryFilter\QueryFilterServiceProvider" --tag="query-filter-migrations"
-php artisan migrate
+composer require smartisan/laravel-query-filter
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Codoxide\QueryFilter\QueryFilterServiceProvider" --tag="query-filter-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
+php artisan vendor:publish --provider="Smartisan\QueryFilter\QueryFilterServiceProvider" --tag="config"
 ```
 
 ## Usage
-
-```php
-$laravel-query-filter = new Codoxide\QueryFilter();
-echo $laravel-query-filter->echoPhrase('Hello, Codoxide!');
+1. Create a new filter class using the following command
+```bash
+php artisan make:filter UserFilter
 ```
+
+2. Prepare your model with filter trait
+```php
+use Smartisan\QueryFilter\HasFilters;
+
+class User extends Model
+{
+    use HasFilters;
+}
+```
+
+3. Add a new filter method with your logic to the generated filter class
+```php
+namespace App\Filters;
+
+use Smartisan\QueryFilter\QueryFilter;
+
+class UserFilter extends QueryFilter
+{
+    public function status($value)
+    {
+        return $this->builder->where('status', $value);
+    }
+}
+```
+
+4. To trigger the filter method, do the following in your controller
+```php
+public function index(UserFilter $filter)
+{
+    User::filter($filter)->get();
+}
+```
+
+the status filter method will be triggered automatically when the URL contains the following query param ```?status=value```
 
 ## Testing
 
