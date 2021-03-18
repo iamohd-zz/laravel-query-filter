@@ -59,6 +59,14 @@ public function index(UserFilter $filter)
 }
 ```
 
+or you can pass the filter class name as string as following:
+```php
+public function index()
+{
+    User::filter(UserFilter::class)->get();
+}
+```
+
 the status filter method will be triggered automatically when the URL contains the following query param ```?status=value```
 
 ## Testing
