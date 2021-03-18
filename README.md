@@ -1,8 +1,7 @@
 # Filter Eloquent results via query URL
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/smartisan/laravel-query-filter.svg?style=flat-square)](https://packagist.org/packages/smartisan/laravel-query-filter)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/smartisan/laravel-query-filter/run-tests?label=tests)](https://github.com/iamohd/laravel-query-filter/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/smartisan/laravel-query-filter/Check%20&%20fix%20styling?label=code%20style)](https://github.com/iamohd/laravel-query-filter/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![GitHub Tests Action Status](https://github.com/iamohd/laravel-query-filter/workflows/run-tests/badge.svg)](https://github.com/iamohd/laravel-query-filter/actions?query=workflow%3Arun-tests)
 [![Total Downloads](https://img.shields.io/packagist/dt/smartisan/laravel-query-filter.svg?style=flat-square)](https://packagist.org/packages/smartisan/laravel-query-filter)
 
 
