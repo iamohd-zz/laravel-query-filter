@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-query-filter` will be documented in this file.
 
-## 1.0.0 - 202X-XX-XX
+## 1.1.0 - 2021-03-18
+- Ability to pass the filter class name to the filter method
+
+## 1.0.0 - 2021-03-18
 
 - initial release
